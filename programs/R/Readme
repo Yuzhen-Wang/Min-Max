@@ -1,0 +1,50 @@
+Example
+
+# read.data(iris, 5)
+# Data frame of "iris" contains 5 columns where column "5" is the classification
+To use this function, user should at first modify "Dir" in the code to the directory of this repository 
+This function has no return values but it assign global variables to R environment
+At the same time, this it will also creat corresponding directory and files 
+To apply this function, user should modify the Dir to the path of directory 
+Dir/inter_process/pretreatment/iris: path of directory
+	x_iris_o	Original of data set without classification
+	x_iris_r	Re-scaled of data set without classification 
+	y_iris		Classification of data set
+	folds_iris	Description of splitting of data set
+
+
+
+# w_iris_o <- pretreat.weight(w_iris_o)
+This function will formalize the weight file of data set
+Rows with "NA" are discarded; columns are named and re-orderd
+	Data_Set	Name of data set 
+	Type		Type of data set; O-original; R-re-scaled
+	Model		Official name of models 
+	Exp		Number of experiment 
+	Fold		Number of folds 
+	C_A		Intra-class distance penalization parameter, -1 for NA
+	C_E		Inter-class distance penalization parameter, -1 for NA
+	Time		Running time for linear programming by Cplex
+	Rank		Number of non-zero weights 
+	W_1...		Weights of features; M (number of features) columns
+
+
+
+# er_iris_o <- weighted.cross.validation(w_iris_o, x_iris, y_iris, folds_iris)
+This function will generate the formal error rate file by compressing weights to one column
+	Data_Set	Name of data set 
+	Type		Type of data set; O-original; R-re-scaled
+	Model		Official name of models 
+	Exp		Number of experiment 
+	Fold		Number of folds 
+	C_A		Intra-class distance penalization parameter, -1 for NA
+	C_E		Inter-class distance penalization parameter, -1 for NA
+	Time		Running time for linear programming by Cplex
+	Rank		Number of non-zero weights 
+	Error_Rate	Error rate on testing set
+	Error_Rate_4	Average error rates on training set by 4-folds cross-validation
+	Selected_F	If this row is selected by "First" strategy; 0/1 for not/is selected
+	Selected_M	If this row is selected by "Middle" strategy; 0/1 for not/is selected 
+	Selected_L	If this row is selected by "Last" strategy; 0/1 for not/is selected 
+	Weights		Weights of features; separated by ","
+
