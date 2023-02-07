@@ -1,0 +1,51 @@
+User should at first read the data by R function "read.data"
+E.g;, read.data(iris, 5) # Data frame of "iris" contains 5 columns where column "5" is the classification
+To use this function, user should at first modify "Dir" in the code to the directory of this repository 
+This function has no return values but it assign global variables to R environment
+And it will also automatically generate directories and files in directory "inter_process"
+Who contains the splitting of data set; original/re-scaled data set; Cplex input format file etc. 
+
+
+Then, user could use the bash script to achieve auto test
+For models with panalization parameters, models should run several times by only modifying 1 or 2 parameters
+2 ways to do this: one is to generate the same model with different parameters; the other is to modify the test bash script
+The 2 corresponding script are both proposed
+- run.sh		Generate the same model with different parameters; "flow control" technical provided in OPL
+			May run out of memory and stop at the middle of an iteration for huge scale data sets
+- run_ite.sh		Iteration on bash script for penalization parameter C
+			Copy and modify the Cplex input data to a temporary file at each iteration 
+Bash script could output weights results in directory "results" naming "w_data-set_o/r"
+Where "data-set" represetnts the name of data set; o/r for original/re-scaled data set respectively
+However, this results files are not the formal version
+
+
+Next, user may use R function "pretreat.weight" to formalize the weights results
+E.g., w_iris_o <- pretreat.weight(w_iris_o)
+# w_iris_o		Weights for original Iris data set
+This function may discard rows with "NA"; re-name and re-order the columns
+
+
+Last, a 5-fold cross-validation may be achieved by R function "weighted.cross.validation"
+E.g., er_iris_o <- weighted.cross.validation(w_iris_o, x_iris, y_iris, folds_iris)
+# er_iris_o		Error rates results for original Iris data set
+# w_iris_o		Weights results for original Iris data set
+# x_iris_o		Original Iris data set
+# y_iris		Classification of Iris data set
+# folds_iris		Splitting of Iris data set
+The Final error rates results are labeled with following columns 
+Data_Set		Name of data set 
+Type			Type of data set; O-original; R-re-scaled
+Model			Official name of models 
+Exp			Number of experiment 
+Fold			Number of folds 
+C_A			Intra-class distance penalization parameter, -1 for NA
+C_E			Inter-class distance penalization parameter, -1 for NA
+Time			Running time for linear programming by Cplex
+Rank			Number of non-zero weights 
+Error_Rate		Error rate on testing set
+Error_Rate_4		Average error rates on training set by 4-folds cross-validation
+Selected_F		If this row is selected by "First" strategy; 0/1 for not/is selected
+Selected_M		If this row is selected by "Middle" strategy; 0/1 for not/is selected 
+Selected_L		If this row is selected by "Last" strategy; 0/1 for not/is selected 
+Weights			Weights of features; separated by ","
+
