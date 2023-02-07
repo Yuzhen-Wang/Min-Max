@@ -1,0 +1,32 @@
+/*****************************************************************************
+ * One directory for each separate data set 
+ * It contains 2 sub-folders: O/R for Original/Re-scaled data set 
+ * 50 Cplex input data files are generated in each sub-folders: Exp_Fold.dat
+ * Exp/Fold: serial of experiment (1~10)/fold (1~5)
+ *****************************************************************************/
+
+
+// Here is the Cplex input data format
+
+n = ...;	// Number of observations
+m = ...;	// Number of features
+C = ...;	// Used for models with only 1 penalization parameter
+C_intra = ...;	// Used for models with 2 penalization parameters
+C_inter = ...;	
+y = [		// Class of each observation
+...
+];
+x = [		// Description of each observation
+...
+];
+
+/*
+C/C_intra/C_inter is selected from set {2^x | x = 0..10}
+While in objectif function, it is used as 1 / C
+
+To uniform the input OPL data file, it contains at the same time C, C_intra and C_inter
+For the models with 1 penalization parameter of C, only the parameter "C" is needed
+For the models with 2 penalization parameters of C, "C_intra" and "C_inter" are employed
+*/
+
+
