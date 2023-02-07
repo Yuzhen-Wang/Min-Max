@@ -1,0 +1,54 @@
+The Cplex programs are similar, the one with detailed comment is "max-d-a_comment.mod"
+
+For models with panalization parameters, models should run several times by only modifying 1 or 2 parameters. 
+2 ways to do this: one is to generate the same model with different parameters; the other is to modify the test bash script. 
+The first strategy could be done by "flow control" provided in OPL; it could achive this by only modifying the parameter C. 
+However, "flow control" may run out of memory and stop at the middle of an iteration for huge scale data sets. 
+The second strategy required to modify the OPL input file on each iteration. 
+In all the other Cplex models files, only the "flow control" version is displayed.  
+The code of "bash iteration" version could be found in "max-d-a_comment.mod". 
+
+Since some of the characters of the name of a model is not allowed in the name of a file, the name of OPL model file are not the official name of a model. 
+Here is a list of the names of the OPL model file and the official model name: 
+OPL names	Official names
+min-d-0		Min-d-0
+min-d-a		Min-d-i^A
+min-d-e		Min-d-i^E
+min-d-a=e	Min-d-i^Æ
+min-d-ae=	Min-d-i^A=E
+min-d-ae	Min-d-i^AE
+min-d-a+	Min-d-i+j^A
+min-d-e+	Min-d-i+j^E
+min-d-a=e+	Min-d-i+j^Æ
+min-d-ae+=	Min-d-i+j^A=E
+min-d-ae+	Min-d-i+j^AE
+min-d-am	Min-d-i,j^A
+min-d-em	Min-d-i,j^E
+min-d-a=em	Min-d-i,j^Æ
+min-d-ae=m	Min-d-i,j^A=E
+min-d-aem	Min-d-i,j^AE
+max-d-0		Max-d-0
+max-d-a		Max-d-i^A
+max-d-e		Max-d-i^E
+max-d-a=e	Max-d-i^Æ
+max-d-ae=	Max-d-i^A=E
+max-d-ae	Max-d-i^AE
+max-d-a+	Max-d-i+j^A
+max-d-e+	Max-d-i+j^E
+max-d-a=e+	Max-d-i+j^Æ
+max-d-ae+=	Max-d-i+j^A=E
+max-d-ae+	Max-d-i+j^AE
+max-d-am	Max-d-i,j^A
+max-d-em	Max-d-i,j^E
+max-d-a=em	Max-d-i,j^Æ
+max-d-ae=m	Max-d-i,j^A=E
+max-d-aem	Max-d-i,j^AE
+min-w-0		Min-w-0
+min-w-a		Min-w-i^A
+min-w-a+	Min-w-i+j^A
+min-w-am	Min-w-i,j^A
+max-w-0		Max-w-0
+max-w-e		Max-w-i^E
+max-w-e+	Max-w-i+j^E
+max-w-em	Max-w-i,j^E
+
