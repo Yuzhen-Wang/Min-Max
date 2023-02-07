@@ -1,0 +1,26 @@
+Formal results are re-organized in this directory 
+
+
+w_data-set_o/r		Formal output weights file of original/re-scaled data set
+			Names of columns: Data-set;Type;Model;Exp;Fold;C_A;C_E;Time;Rank;[W]
+er_data-set_o/r		Formal output error rates table of original/re-scaled data set
+			Names of columns: Data-set;Type;Model;Exp;Fold;C_A;C_E;Time;Rank;ER;ER4;Selected_F/M/L;[W]
+			
+Explications of names of columns
+Data-set	Names of data set
+Type		O/R for Original/Re-scaled data set
+Exp/Fold	Number of experiment/fold
+C_A/C_E		C_intra/C_inter; valued from -1~10
+		-1: this penalization parameter not eligible for this model
+		0~10: a value x means C=2^{-x}
+Time		Cplex running time, described in second
+Rank		Number of non-zero weight features by linear programming model
+ER		Error rates on testing set
+ER4		Average error rates of 4-fold cross-validation on training set
+Selected_F/M/L	Contains 3 columns; If a row is selected by First/Middle/Last strategy
+		0/1 for not/is selected
+[W]		Weights of each features
+		Weights in weights files contains M columns (M: number of features)
+		Only 1 column in error rates files; separated by ","
+
+
